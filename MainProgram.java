@@ -1,167 +1,7 @@
 import java.util.Scanner;
 import java.util.Vector;
 
-class item{
-	int day;
-	String name;
-	int price;
-
-	public item(int day, String name, int price){
-		this.day = day;
-		this.name = name;
-		this.price = price;
-	}
-
-	public item() {}
-
-	public void setday(int day){
-		this.day = day;
-	}
-	public void setname(String name){
-		this.name = name;
-	}
-	public void setprice(int price){
-		this.price = price;
-	}
-	public int getday(){
-		return this.day;
-	}
-	public String getname(){
-		return this.name;
-	}
-	public int getprice(){
-		return this.price;
-	}
-}
-
-class Accountbook { //가계부 관리 메뉴
-	public static int i=0;
-	public static void mainaccount(Vector<item> v){
-	//private static Object Vector;
-			
-		Scanner scan = new Scanner(System.in);
-		int number=1;
-		//Vector<item> v = new Vector<item>();
-		while(number!=4){
-			System.out.println("========= <Purchase List> ========");
-			System.out.println("  번호    구입날짜      상품명      상품가격   ");
-			for(int i=0;i<v.size();i++){
-				System.out.println(" ["+i+"] " + v.get(i).getday()
-						+	 "\t"+v.get(i).getname()+"\t"+v.get(i).getprice());
-			}
-			System.out.println("=================================\n");
-			System.out.println("========== <가계부 관리 메뉴> ==========\n");
-			System.out.println("1. 가계부 작성\n2. 가계부 업데이트\n3. 구입 내역 삭제\n4. 뒤로가기\n");
-			System.out.println("=================================\n");
-			System.out.print("메뉴 번호 입력: ");
-			number = scan.nextInt();
-			
-			switch(number){
-			case 1:
-				Accountbook.addaccount(v);
-				break;
-			case 2:	
-				Accountbook.updateaccount(v);
-				break;
-			case 3:
-				Accountbook.deleteaccount(v);	
-				break;
-			case 4:
-				return;//뒤로가기
-			default:
-				System.out.println("1-4 사이에서 입력해주세요");
-				break;
-				}
-		}
-	}
-
-	private static void deleteaccount(Vector<item> v) {
-		Scanner scan = new Scanner(System.in);
-		if(v.size()==0){
-            	System.out.println("삭제할 품목이 없습니다.");
-            	return;
-		}
-		System.out.print("삭제할 구입내역의 번호를 입력하세요. ");
-		int num;
-		do{
-			num = scan.nextInt();
-			if(num<0 || num >v.size()-1)
-            		System.out.println("번호를 다시 입력하세요.");
-		}while(num<0 || num >v.size()-1);
-		
-		System.out.println("  번호    구입날짜      상품명      상품가격   ");
-		System.out.println(" ["+num+"] " + v.get(num).getday()+"\t"+v.get(num).getname()+"\t"+v.get(num).getprice());
-		System.out.println("정말 삭제하시겠습니까?(Y/N)");
-		String ans = scan.next();
-		if(ans.equals("Y")||ans.equals("y"))
-			v.remove(num);
-		else if(ans.equals("N")||ans.equals("n"))
-			return;
-       		else
-            		System.out.print("다시 입력하세요.(Y/N) ");
-	}
-	
-	private static void updateaccount(Vector<item> v) {
-		Scanner scan = new Scanner(System.in);
-		if(v.size()==0){
-            	System.out.println("수정할 품목이 없습니다. ");
-            	return;
-		}
-		System.out.println("수정할 구입내역의 번호를 입력하세요. ");
-		int day, price, num;
-		String name;
-		do{
-			num = scan.nextInt();
-			if(num<0 || num >v.size()-1)
-            			System.out.println("번호를 다시 입력하세요.");
-		}while(num<0 || num >v.size()-1);
-		
-		System.out.println("  번호    구입날짜      상품명      상품가격   ");
-		System.out.println(" ["+num+"] " + v.get(num).getday()+"  "+v.get(num).getname()+"   "+v.get(num).getprice());		
-		System.out.println("수정할 항목의 번호를 입력하세요.");
-		System.out.println("1.구입날짜\n2.상품명\n3.상품가격");
-		int cas;
-		
-		do{
-			cas=scan.nextInt();
-			if(cas==1){
-				System.out.println("구입날짜:");
-				day = scan.nextInt();
-				v.get(num).setday(day);
-			}else if(cas==2){
-				System.out.println("상품명:");
-				name = scan.next();
-				v.get(num).setname(name);
-			}else if (cas==3){
-				System.out.println("상품가격:");
-				price = scan.nextInt();
-				v.get(num).setprice(price);
-			}else{
-				System.out.println("1번~3번 사이에서 입력해주세요.");
-			}	
-			}while(cas<1||cas>3);
-		
-		return;
-	}
-	
-	public static void addaccount(Vector<item> v){
-		Scanner scan = new Scanner(System.in);
-		System.out.print("구입내역의 정보를 입력하세요. ");
-		int day, price;
-		String name;
-		System.out.print("구입날짜:" );
-		day = scan.nextInt();
-		System.out.print("상품명:" );
-		name = scan.next();
-		System.out.print("상품가격:" );
-		price = scan.nextInt();
-		item i1 = new item(day,name,price);
-		v.add(i1);
-		return;
-	}
-}
-
-class MemoManager {//메모관리기능
+class MemoManager {	//	메모 관리 메뉴
 	public static void start(Vector v) {
 		 while (true) {
 	          System.out.println("\n===<Memo List>===");
@@ -214,7 +54,7 @@ class MemoManager {//메모관리기능
 		 }//while
 	}
 
-	public void addmemo(Vector v) {
+	public void addmemo(Vector v) {	// 메모 생성
 		 System.out.println("추가할 메모내용을 입력하세요.");
          System.out.print("입력: ");
 		 Scanner sc1 = new Scanner(System.in);
@@ -223,7 +63,7 @@ class MemoManager {//메모관리기능
          v.add(memo);
 	}
 
-	public static void updatememo(Vector v) {
+	public static void updatememo(Vector v) {	//	메모 업데이트
 		int number;
 
 		while(true) {
@@ -257,7 +97,7 @@ class MemoManager {//메모관리기능
 		}
 	}
 
-	public static void deletememo(Vector v) {
+	public static void deletememo(Vector v) {	// 메모 삭제
 		int number;
 		String YesOrNo;
 		while (true) {
@@ -303,43 +143,9 @@ class MemoManager {//메모관리기능
 		}
 	}
 
-public class MainProgram {//메인메뉴
 
-	public static void main(String[] args) {
-		Scanner scan = new Scanner (System.in);
-		Vector v = new Vector();
-		Vector<item> v2 = new Vector<item>();
-		while (true) {
-		System.out.printf("========= MENU =========%n"
-				+ "1. Memo manager (메모관리)%n"
-				+ "2. Calculator (계산기)%n"
-				+ "3. Account book (가계부)%n"
-				+ "4. Exit (종료)%n"
-				+ "========================%n");
-		System.out.printf("메뉴 번호 입력: ");
-		int sel = scan.nextInt();	// 번호 입력
 
-		if (sel==1) {
-			MemoManager menu1 = new MemoManager();
-			menu1.start(v);
-			}// 메모관리 메뉴 호출
-		else if (sel==2){
-			new calculator();
-			}// 계산기 메뉴 호출
-		else if (sel==3){
-            Accountbook.mainaccount(v2);
-            }// 가계부 메뉴 호출
-		else if (sel==4) { // 종료
-			break;
-			}
-		else {
-			System.out.println("다시 입력하세요. ");
-			}
-		}
-		}
-	}
-
-class calculator{
+class calculator{	// 계산기 메뉴
 	static Scanner scan = new Scanner (System.in);
 	calculator() {
 		int input;
@@ -366,7 +172,7 @@ class calculator{
 		}while(run);
 	}
 
-	public static void calculate() {
+	public static void calculate() {	//	계산
 		double num1,num2,result=0;
 		String operator;
 		//boolean run=true;
@@ -406,7 +212,7 @@ class calculator{
 		}while(true);
 	}
 
-	public static void convert() {
+	public static void convert() {	// 단위변환
 		int menu;
 		boolean run=true;
 		System.out.println("");
@@ -588,3 +394,199 @@ class calculator{
 		}
 	}
 }
+
+class item{
+	int day;
+	String name;
+	int price;
+
+	public item(int day, String name, int price){
+		this.day = day;
+		this.name = name;
+		this.price = price;
+	}
+
+	public item() {}
+
+	public void setday(int day){
+		this.day = day;
+	}
+	public void setname(String name){
+		this.name = name;
+	}
+	public void setprice(int price){
+		this.price = price;
+	}
+	public int getday(){
+		return this.day;
+	}
+	public String getname(){
+		return this.name;
+	}
+	public int getprice(){
+		return this.price;
+	}
+}
+
+class Accountbook { // 가계부 관리 메뉴
+	public static int i=0;
+	public static void mainaccount(Vector<item> v){
+	//private static Object Vector;
+			
+		Scanner scan = new Scanner(System.in);
+		int number=1;
+		//Vector<item> v = new Vector<item>();
+		while(number!=4){
+			System.out.println("========= <Purchase List> ========");
+			System.out.println("  번호    구입날짜      상품명      상품가격   ");
+			for(int i=0;i<v.size();i++){
+				System.out.println(" ["+i+"] " + v.get(i).getday()
+						+	 "\t"+v.get(i).getname()+"\t"+v.get(i).getprice());
+			}
+			System.out.println("=================================\n");
+			System.out.println("========== <가계부 관리 메뉴> ==========\n");
+			System.out.println("1. 가계부 작성\n2. 가계부 업데이트\n3. 구입 내역 삭제\n4. 뒤로가기\n");
+			System.out.println("=================================\n");
+			System.out.print("메뉴 번호 입력: ");
+			number = scan.nextInt();
+			
+			switch(number){
+			case 1:
+				Accountbook.addaccount(v);
+				break;
+			case 2:	
+				Accountbook.updateaccount(v);
+				break;
+			case 3:
+				Accountbook.deleteaccount(v);	
+				break;
+			case 4:
+				return;//뒤로가기
+			default:
+				System.out.println("1-4 사이에서 입력해주세요");
+				break;
+				}
+		}
+	}
+
+	private static void deleteaccount(Vector<item> v) { // 구입 내역 삭제
+		Scanner scan = new Scanner(System.in);
+		if(v.size()==0){
+            	System.out.println("삭제할 품목이 없습니다.");
+            	return;
+		}
+		System.out.print("삭제할 구입내역의 번호를 입력하세요. ");
+		int num;
+		do{
+			num = scan.nextInt();
+			if(num<0 || num >v.size()-1)
+            		System.out.println("번호를 다시 입력하세요.");
+		}while(num<0 || num >v.size()-1);
+		
+		System.out.println("  번호    구입날짜      상품명      상품가격   ");
+		System.out.println(" ["+num+"] " + v.get(num).getday()+"\t"+v.get(num).getname()+"\t"+v.get(num).getprice());
+		System.out.println("정말 삭제하시겠습니까?(Y/N)");
+		String ans = scan.next();
+		if(ans.equals("Y")||ans.equals("y"))
+			v.remove(num);
+		else if(ans.equals("N")||ans.equals("n"))
+			return;
+       		else
+            		System.out.print("다시 입력하세요.(Y/N) ");
+	}
+	
+	private static void updateaccount(Vector<item> v) {	// 가계부 업데이트
+		Scanner scan = new Scanner(System.in);
+		if(v.size()==0){
+            	System.out.println("수정할 품목이 없습니다. ");
+            	return;
+		}
+		System.out.println("수정할 구입내역의 번호를 입력하세요. ");
+		int day, price, num;
+		String name;
+		do{
+			num = scan.nextInt();
+			if(num<0 || num >v.size()-1)
+            			System.out.println("번호를 다시 입력하세요.");
+		}while(num<0 || num >v.size()-1);
+		
+		System.out.println("  번호    구입날짜      상품명      상품가격   ");
+		System.out.println(" ["+num+"] " + v.get(num).getday()+"  "+v.get(num).getname()+"   "+v.get(num).getprice());		
+		System.out.println("수정할 항목의 번호를 입력하세요.");
+		System.out.println("1.구입날짜\n2.상품명\n3.상품가격");
+		int cas;
+		
+		do{
+			cas=scan.nextInt();
+			if(cas==1){
+				System.out.println("구입날짜:");
+				day = scan.nextInt();
+				v.get(num).setday(day);
+			}else if(cas==2){
+				System.out.println("상품명:");
+				name = scan.next();
+				v.get(num).setname(name);
+			}else if (cas==3){
+				System.out.println("상품가격:");
+				price = scan.nextInt();
+				v.get(num).setprice(price);
+			}else{
+				System.out.println("1번~3번 사이에서 입력해주세요.");
+			}	
+			}while(cas<1||cas>3);
+		
+		return;
+	}
+	
+	public static void addaccount(Vector<item> v){	// 가계부 작성
+		Scanner scan = new Scanner(System.in);
+		System.out.print("구입내역의 정보를 입력하세요. ");
+		int day, price;
+		String name;
+		System.out.print("구입날짜:" );
+		day = scan.nextInt();
+		System.out.print("상품명:" );
+		name = scan.next();
+		System.out.print("상품가격:" );
+		price = scan.nextInt();
+		item i1 = new item(day,name,price);
+		v.add(i1);
+		return;
+	}
+}
+
+public class MainProgram {	//	메인 메뉴
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner (System.in);
+		Vector v = new Vector();
+		Vector<item> v2 = new Vector<item>();
+		while (true) {
+		System.out.printf("========= MENU =========%n"
+				+ "1. Memo manager (메모관리)%n"
+				+ "2. Calculator (계산기)%n"
+				+ "3. Account book (가계부)%n"
+				+ "4. Exit (종료)%n"
+				+ "========================%n");
+		System.out.printf("메뉴 번호 입력: ");
+		int sel = scan.nextInt();	// 번호 입력
+
+		if (sel==1) {
+			MemoManager menu1 = new MemoManager();
+			menu1.start(v);
+			}// 메모관리 메뉴 호출
+		else if (sel==2){
+			new calculator();
+			}// 계산기 메뉴 호출
+		else if (sel==3){
+            Accountbook.mainaccount(v2);
+            }// 가계부 메뉴 호출
+		else if (sel==4) { // 종료
+			break;
+			}
+		else {
+			System.out.println("다시 입력하세요. ");
+			}
+		}
+		}
+	}
