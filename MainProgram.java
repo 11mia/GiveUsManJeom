@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -41,15 +42,15 @@ public int getprice(){
 
 
 
-public class accountbook {
+class Accountbook {
 
 		public static int i=0;
-		public static void starter(){
+		public static void mainaccount(Vector<item> v){
 		//private static Object Vector;
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		int number=1;
-		Vector<item> v = new Vector<item>();
+		//Vector<item> v = new Vector<item>();
 		while(number!=4){
 
 		System.out.println("========= <Purchase List> ========");
@@ -64,16 +65,15 @@ public class accountbook {
 		System.out.println("=================================\n");
 		System.out.println("메뉴 번호 입력:");
 		number = scan.nextInt();
-		scan.close();
 		switch(number){
 		case 1:
-			addaccount(v);
+			Accountbook.addaccount(v);
 			break;
 		case 2:
-			updateaccount(v);
+			Accountbook.updateaccount(v);
 			break;
 		case 3:
-			deleteaccount(v);
+			Accountbook.deleteaccount(v);
 			break;
 		case 4:
 			return;//뒤로가기
@@ -81,7 +81,7 @@ public class accountbook {
 			System.out.println("1-4 사이에서 입력해주세요");
 			break;
 		}
-	}//starter
+		}//main
 }
 
 	private static void deleteaccount(Vector<item> v) {
@@ -93,7 +93,6 @@ public class accountbook {
 		System.out.println(" ["+num+"] " + v.get(num).getday()+"\t"+v.get(num).getname()+"\t"+v.get(num).getprice());
 		System.out.println("정말 삭제하시겠습니까?(Y/N)");
 		String ans = scan.next();
-		scan.close();
 		if(ans.equals("Y"))
 			v.remove(num);
 		else
@@ -129,7 +128,6 @@ public class accountbook {
 		default:
 			break;
 		}
-		scan.close();
 		return;
 
 
@@ -147,12 +145,12 @@ public class accountbook {
 		price = scan.nextInt();
 		item i1 = new item(day,name,price);
 		v.add(i1);
-		scan.close();
 		return;
 
 
 	}
 }
+
 class MemoManager {//메모관리기능
 	public static void start(Vector v) {
 		 while (true) {
@@ -305,6 +303,7 @@ public class MainProgram {//메인메뉴
 	public static void main(String[] args) {
 		Scanner scan = new Scanner (System.in);
 		Vector v = new Vector();
+		Vector<item> v2 = new Vector<item>();
 		while (true) {
 		System.out.printf("========= MENU =========%n"
 				+ "1. Memo manager (메모관리)%n"
@@ -319,9 +318,12 @@ public class MainProgram {//메인메뉴
 			MemoManager menu1 = new MemoManager();
 			menu1.start(v);
 		}// 메모관리 메뉴 호출
-		else if (sel==2)
-			new calculator();// 계산기 메뉴 호출
-		else if (sel==3) ;// 가계부 메뉴 호출
+		else if (sel==2){
+			new calculator();
+		}// 계산기 메뉴 호출
+		else if (sel==3){
+            Accountbook.mainaccount(v2);
+		}// 가계부 메뉴 호출
 		else if (sel==4) { // 종료
 			break;
 		}
