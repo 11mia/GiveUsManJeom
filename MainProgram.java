@@ -84,50 +84,74 @@ class Accountbook {
 		}//main
 }
 
+	
 	private static void deleteaccount(Vector<item> v) {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
+		if(v.size()==0){
+            System.out.println("삭제할 품목이 없습니다.");
+            return;
+		}
 		System.out.println("삭제할 구입내역의 번호를 입력하세요. ");
-		int num = scan.nextInt();
+		int num;
+		do{
+		num = scan.nextInt();
+		if(num<0 || num >v.size()-1)
+            System.out.println("번호를 다시 입력하세요.");
+		}while(num<0 || num >v.size()-1);
 		System.out.println("  번호    구입날짜      상품명      상품가격   ");
 		System.out.println(" ["+num+"] " + v.get(num).getday()+"\t"+v.get(num).getname()+"\t"+v.get(num).getprice());
 		System.out.println("정말 삭제하시겠습니까?(Y/N)");
 		String ans = scan.next();
-		if(ans.equals("Y"))
+		if(ans.equals("Y")||ans.equals("y"))
 			v.remove(num);
-		else
+		else if(ans.equals("N")||ans.equals("n"))
 			return;
+        else
+            System.out.println("다시 입력하세요.(Y/N)\n");
+
 	}
 	private static void updateaccount(Vector<item> v) {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
+		if(v.size()==0){
+            System.out.println("수정할 품목이 없습니다. ");
+            return;
+		}
 		System.out.println("수정할 구입내역의 번호를 입력하세요. ");
-		int day, price;
+		int day, price, num;
 		String name;
-		int num = scan.nextInt();
+		do{
+		num = scan.nextInt();
+		if(num<0 || num >v.size()-1)
+            System.out.println("번호를 다시 입력하세요.");
+		}while(num<0 || num >v.size()-1);
+		//int num = scan.nextInt();
 		System.out.println("  번호    구입날짜      상품명      상품가격   ");
-		System.out.println(" ["+num+"] " + v.get(num).getday()+"  "+v.get(num).getname()+"   "+v.get(num).getprice());
+		System.out.println(" ["+num+"] " + v.get(num).getday()+"  "+v.get(num).getname()+"   "+v.get(num).getprice());		
 		System.out.println("수정할 항목의 번호를 입력하세요.");
 		System.out.println("1.구입날짜\n2.상품명\n3.상품가격");
-		int cas = scan.nextInt();
-		switch(cas){
-		case 1:
+		int cas;
+		
+		do{
+		cas=scan.nextInt();
+		if(cas==1){
 			System.out.println("구입날짜:");
 			day = scan.nextInt();
-			v.get(num).setday(day);
-			break;
-		case 2:
+			v.get(num).setday(day);}
+		else if(cas==2){
 			System.out.println("상품명:");
 			name = scan.next();
 			v.get(num).setname(name);
-			break;
-		case 3:
+		}else if (cas==3){
 			System.out.println("상품가격:");
 			price = scan.nextInt();
 			v.get(num).setprice(price);
-		default:
-			break;
-		}
+		}else{
+			System.out.println("1번~3번 사이에서 입력해주세요.");
+		}	
+		}while(cas<1||cas>3);
+		
 		return;
 
 
