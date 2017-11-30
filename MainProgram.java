@@ -1,8 +1,8 @@
-import java.util.Scanner;
+﻿import java.util.Scanner;
 import java.util.Vector;
 
 class MemoManager {	//	메모 관리 메뉴
-	public static void start(Vector v) {
+	public static void domanagememo(Vector v) {
 		 while (true) {
 	          System.out.println("\n===<Memo List>===");
 
@@ -16,6 +16,7 @@ class MemoManager {	//	메모 관리 메뉴
 	        	  System.out.print((i+1));
 	        	  System.out.println(": " + str);
 	          }
+	          
 	          System.out.println("=================");
 	          System.out.println("==<메모 관리 메뉴>==");
 	          System.out.println("1.메모 생성");
@@ -29,18 +30,15 @@ class MemoManager {	//	메모 관리 메뉴
 	          int selection = sc.nextInt();
 
 	          if (selection == 1) {
-	        	  MemoManager ob1 = new MemoManager();
-	        	  ob1.addmemo(v);
+	        	  addmemo(v);
 	          }
 
 	          else if (selection == 2) {
-	        	  MemoManager ob2 = new MemoManager();
-	        	  ob2.updatememo(v);
+	        	  updatememo(v);
 	          }
 
 	          else if (selection == 3) {
-	        	  MemoManager ob3 = new MemoManager();
-	        	  ob3.deletememo(v);
+	        	  deletememo(v);
 	          }
 
 	          else if (selection == 4) {
@@ -54,12 +52,11 @@ class MemoManager {	//	메모 관리 메뉴
 		 }//while
 	}
 
-	public void addmemo(Vector v) {	// 메모 생성
+	public static void addmemo(Vector v) {	// 메모 생성
 		 System.out.println("추가할 메모내용을 입력하세요.");
          System.out.print("입력: ");
 		 Scanner sc1 = new Scanner(System.in);
          String memo = sc1.nextLine();
-         //String memo1=sc1.ne
          v.add(memo);
 	}
 
@@ -100,6 +97,7 @@ class MemoManager {	//	메모 관리 메뉴
 	public static void deletememo(Vector v) {	// 메모 삭제
 		int number;
 		String YesOrNo;
+		
 		while (true) {
 			if (v.size() == 0) {
 				System.out.println("저장된 메모가 없어  메모 삭제 기능을 수행할 수 없습니다.\n메모관리 메뉴화면으로 돌아갑니다.");
@@ -117,6 +115,11 @@ class MemoManager {	//	메모 관리 메뉴
 
 			else {
 				while (true) {
+					Object obj = v.get(number-1);
+					String str = (String)obj;
+					System.out.print(number);
+					System.out.println(": " + str);
+					
 					System.out.print("정말 해당 메모를 삭제하시겠습니까?(Y/N): ");
 					Scanner sc4 = new Scanner(System.in);
 					YesOrNo = sc4.nextLine();
@@ -572,8 +575,7 @@ public class MainProgram {	//	메인 메뉴
 		int sel = scan.nextInt();	// 번호 입력
 
 		if (sel==1) {
-			MemoManager menu1 = new MemoManager();
-			menu1.start(v);
+			MemoManager.domanagememo(v);
 			}// 메모관리 메뉴 호출
 		else if (sel==2){
 			new calculator();
