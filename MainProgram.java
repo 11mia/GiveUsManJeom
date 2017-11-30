@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -7,92 +6,82 @@ class item{
 	String name;
 	int price;
 
-public item(int day, String name, int price){
-	this.day = day;
-	this.name = name;
-	this.price = price;
+	public item(int day, String name, int price){
+		this.day = day;
+		this.name = name;
+		this.price = price;
+	}
 
+	public item() {}
+
+	public void setday(int day){
+		this.day = day;
+	}
+	public void setname(String name){
+		this.name = name;
+	}
+	public void setprice(int price){
+		this.price = price;
+	}
+	public int getday(){
+		return this.day;
+	}
+	public String getname(){
+		return this.name;
+	}
+	public int getprice(){
+		return this.price;
+	}
 }
 
-public item() {
-	// TODO Auto-generated constructor stub
-}
-
-public void setday(int day){
-	this.day = day;
-}
-public void setname(String name){
-	this.name = name;
-}
-public void setprice(int price){
-	this.price = price;
-}
-public int getday(){
-	return this.day;
-}
-public String getname(){
-	return this.name;
-}
-public int getprice(){
-	return this.price;
-}
-
-
-}
-
-
-
-class Accountbook {
-
-		public static int i=0;
-		public static void mainaccount(Vector<item> v){
-		//private static Object Vector;
-		// TODO Auto-generated method stub
+class Accountbook { //가계부 관리 메뉴
+	public static int i=0;
+	public static void mainaccount(Vector<item> v){
+	//private static Object Vector;
+			
 		Scanner scan = new Scanner(System.in);
 		int number=1;
 		//Vector<item> v = new Vector<item>();
 		while(number!=4){
-
-		System.out.println("========= <Purchase List> ========");
-		System.out.println("  번호    구입날짜      상품명      상품가격   ");
-		for(int i=0;i<v.size();i++){
-			System.out.println(" ["+i+"] " + v.get(i).getday()
-					+ "\t"+v.get(i).getname()+"\t"+v.get(i).getprice());
+			System.out.println("========= <Purchase List> ========");
+			System.out.println("  번호    구입날짜      상품명      상품가격   ");
+			for(int i=0;i<v.size();i++){
+				System.out.println(" ["+i+"] " + v.get(i).getday()
+						+	 "\t"+v.get(i).getname()+"\t"+v.get(i).getprice());
+			}
+			System.out.println("=================================\n");
+			System.out.println("========== <가계부 관리 메뉴> ==========\n");
+			System.out.println("1. 가계부 작성\n2. 가계부 업데이트\n3. 구입 내역 삭제\n4. 뒤로가기\n");
+			System.out.println("=================================\n");
+			System.out.print("메뉴 번호 입력: ");
+			number = scan.nextInt();
+			
+			switch(number){
+			case 1:
+				Accountbook.addaccount(v);
+				break;
+			case 2:	
+				Accountbook.updateaccount(v);
+				break;
+			case 3:
+				Accountbook.deleteaccount(v);	
+				break;
+			case 4:
+				return;//뒤로가기
+			default:
+				System.out.println("1-4 사이에서 입력해주세요");
+				break;
+				}
 		}
-		System.out.println("=================================\n");
-		System.out.println("========== <가계부 관리 메뉴> ==========\n");
-		System.out.println("1. 가계부 작성\n2. 가계부 업데이트\n3. 구입 내역 삭제\n4. 뒤로가기\n");
-		System.out.println("=================================\n");
-		System.out.println("메뉴 번호 입력:");
-		number = scan.nextInt();
-		switch(number){
-		case 1:
-			Accountbook.addaccount(v);
-			break;
-		case 2:
-			Accountbook.updateaccount(v);
-			break;
-		case 3:
-			Accountbook.deleteaccount(v);
-			break;
-		case 4:
-			return;//뒤로가기
-		default:
-			System.out.println("1-4 사이에서 입력해주세요");
-			break;
-		}
-		}//main
-}
+	}
 
-	
 	private static void deleteaccount(Vector<item> v) {
-		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		if(v.size()==0){
-            		System.out.println("삭제할 품목이 없습니다.");
-            		return;
+            	System.out.println("삭제할 품목이 없습니다.");
+            	return;
 		}
-		System.out.println("삭제할 구입내역의 번호를 입력하세요. ");
+		System.out.print("삭제할 구입내역의 번호를 입력하세요. ");
 		int num;
 		do{
 			num = scan.nextInt();
@@ -109,15 +98,14 @@ class Accountbook {
 		else if(ans.equals("N")||ans.equals("n"))
 			return;
        		else
-            		System.out.println("다시 입력하세요.(Y/N)\n");
-
+            		System.out.print("다시 입력하세요.(Y/N) ");
 	}
+	
 	private static void updateaccount(Vector<item> v) {
-		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		if(v.size()==0){
-            		System.out.println("수정할 품목이 없습니다. ");
-            		return;
+            	System.out.println("수정할 품목이 없습니다. ");
+            	return;
 		}
 		System.out.println("수정할 구입내역의 번호를 입력하세요. ");
 		int day, price, num;
@@ -135,44 +123,41 @@ class Accountbook {
 		int cas;
 		
 		do{
-		cas=scan.nextInt();
-		if(cas==1){
-			System.out.println("구입날짜:");
-			day = scan.nextInt();
-			v.get(num).setday(day);
-		}else if(cas==2){
-			System.out.println("상품명:");
-			name = scan.next();
-			v.get(num).setname(name);
-		}else if (cas==3){
-			System.out.println("상품가격:");
-			price = scan.nextInt();
-			v.get(num).setprice(price);
-		}else{
-			System.out.println("1번~3번 사이에서 입력해주세요.");
-		}	
-		}while(cas<1||cas>3);
+			cas=scan.nextInt();
+			if(cas==1){
+				System.out.println("구입날짜:");
+				day = scan.nextInt();
+				v.get(num).setday(day);
+			}else if(cas==2){
+				System.out.println("상품명:");
+				name = scan.next();
+				v.get(num).setname(name);
+			}else if (cas==3){
+				System.out.println("상품가격:");
+				price = scan.nextInt();
+				v.get(num).setprice(price);
+			}else{
+				System.out.println("1번~3번 사이에서 입력해주세요.");
+			}	
+			}while(cas<1||cas>3);
 		
 		return;
-
-
 	}
+	
 	public static void addaccount(Vector<item> v){
 		Scanner scan = new Scanner(System.in);
-		System.out.println("구입내역의 정보를 입력하세요.");
+		System.out.print("구입내역의 정보를 입력하세요. ");
 		int day, price;
 		String name;
-		System.out.println("구입날짜:");
+		System.out.print("구입날짜:" );
 		day = scan.nextInt();
-		System.out.println("상품명:");
+		System.out.print("상품명:" );
 		name = scan.next();
-		System.out.println("상품가격:");
+		System.out.print("상품가격:" );
 		price = scan.nextInt();
 		item i1 = new item(day,name,price);
 		v.add(i1);
 		return;
-
-
 	}
 }
 
@@ -186,10 +171,10 @@ class MemoManager {//메모관리기능
 	          }
 
 	          for (int i = 0; i < v.size(); i++) {
-	          Object obj = v.get(i);
-	          String str = (String)obj;
-	          System.out.print((i+1));
-	          System.out.println(": " + str);
+	        	  Object obj = v.get(i);
+	        	  String str = (String)obj;
+	        	  System.out.print((i+1));
+	        	  System.out.println(": " + str);
 	          }
 	          System.out.println("=================");
 	          System.out.println("==<메모 관리 메뉴>==");
@@ -211,13 +196,11 @@ class MemoManager {//메모관리기능
 	          else if (selection == 2) {
 	        	  MemoManager ob2 = new MemoManager();
 	        	  ob2.updatememo(v);
-
 	          }
 
 	          else if (selection == 3) {
 	        	  MemoManager ob3 = new MemoManager();
 	        	  ob3.deletememo(v);
-
 	          }
 
 	          else if (selection == 4) {
@@ -238,7 +221,6 @@ class MemoManager {//메모관리기능
          String memo = sc1.nextLine();
          //String memo1=sc1.ne
          v.add(memo);
-
 	}
 
 	public static void updatememo(Vector v) {
@@ -295,18 +277,16 @@ class MemoManager {//메모관리기능
 
 			else {
 				while (true) {
-
-				System.out.print("정말 해당 메모를 삭제하시겠습니까?(Y/N): ");
-				Scanner sc4 = new Scanner(System.in);
-				YesOrNo = sc4.nextLine();
-				if (true == !(YesOrNo.equals("Y") || YesOrNo.equals("y") || YesOrNo.equals("N") || YesOrNo.equals("n")))
-					System.out.println("'Y' 또는'N'으로 제대로 다시 입력하세요.");
-				else
-					break;
+					System.out.print("정말 해당 메모를 삭제하시겠습니까?(Y/N): ");
+					Scanner sc4 = new Scanner(System.in);
+					YesOrNo = sc4.nextLine();
+					if (true == !(YesOrNo.equals("Y") || YesOrNo.equals("y") || YesOrNo.equals("N") || YesOrNo.equals("n")))
+						System.out.println("'Y' 또는'N'으로 제대로 다시 입력하세요.");
+					else
+						break;
 				}
 
 				if (YesOrNo.equals("Y") || YesOrNo.equals("y")) {
-
 					v.remove(number-1);
 					System.out.println("해당 메모를 삭제하였습니다.");
 					System.out.println("메모관리 메뉴화면으로 돌아갑니다.");
@@ -316,12 +296,12 @@ class MemoManager {//메모관리기능
 					System.out.println("해당 메모를 삭제하지 않았습니다.");
 					System.out.println("메모관리 메뉴화면으로 돌아갑니다.");
 				}
-
-			break;
-			}
-        }//while
+				
+				break;
+				}
+			}//while
+		}
 	}
-}
 
 public class MainProgram {//메인메뉴
 
@@ -342,22 +322,22 @@ public class MainProgram {//메인메뉴
 		if (sel==1) {
 			MemoManager menu1 = new MemoManager();
 			menu1.start(v);
-		}// 메모관리 메뉴 호출
+			}// 메모관리 메뉴 호출
 		else if (sel==2){
 			new calculator();
-		}// 계산기 메뉴 호출
+			}// 계산기 메뉴 호출
 		else if (sel==3){
             Accountbook.mainaccount(v2);
-		}// 가계부 메뉴 호출
+            }// 가계부 메뉴 호출
 		else if (sel==4) { // 종료
 			break;
-		}
+			}
 		else {
 			System.out.println("다시 입력하세요. ");
+			}
 		}
 		}
 	}
-}
 
 class calculator{
 	static Scanner scan = new Scanner (System.in);
@@ -424,7 +404,6 @@ class calculator{
 			break;
 		}
 		}while(true);
-
 	}
 
 	public static void convert() {
@@ -479,10 +458,7 @@ class calculator{
 			System.out.println("");
 			break;
 		}
-
-
 		}while(run);
-
 	}
 
 	public static void pound2kg() {
@@ -611,5 +587,4 @@ class calculator{
 				break;
 		}
 	}
-
 }
