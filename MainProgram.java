@@ -143,19 +143,18 @@ class MemoManager {	//	메모 관리 메뉴
 		}
 	}
 
-
-
 class calculator{	// 계산기 메뉴
 	static Scanner scan = new Scanner (System.in);
 	calculator() {
 		int input;
-		boolean run=true;
 		System.out.println("");
 
 		do {
-			System.out.println("1.계산");
-			System.out.println("2.단위변환");
-			System.out.println("3.뒤로가기");
+			System.out.println("=<계산기 메뉴>=");
+			System.out.println(" 1.계산");
+			System.out.println(" 2.단위변환");
+			System.out.println(" 3.뒤로가기");
+			System.out.println("===========");
 			System.out.print("입력 : ");
 
 			input = scan.nextInt();
@@ -167,15 +166,16 @@ class calculator{	// 계산기 메뉴
 				calculate();
 			else if(input==2)
 				convert();
-			else
-				run = false;
-		}while(run);
+			else {
+				System.out.println("메인화면으로 돌아갑니다.\n");
+				break;
+			}
+		}while(true);
 	}
 
 	public static void calculate() {	//	계산
 		double num1,num2,result=0;
 		String operator;
-		//boolean run=true;
 		String answer;
 		do {
 		System.out.print("\n숫자1 : ");
@@ -203,7 +203,6 @@ class calculator{	// 계산기 메뉴
 		while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
 			System.out.print("다시 입력하세요 : ");
 			answer = scan.nextLine();
-			//scan.nextLine();
 		}
 		if(answer.equals("n")||answer.equals("N")) {
 			System.out.println("");
@@ -214,56 +213,58 @@ class calculator{	// 계산기 메뉴
 
 	public static void convert() {	// 단위변환
 		int menu;
-		boolean run=true;
+		boolean run = true;
 		System.out.println("");
 		do {
-		System.out.println("1. pound->kg");
-		System.out.println("2. kg->pound");
-		System.out.println("3. inch->cm");
-		System.out.println("4. cm->inch");
-		System.out.println("5. °F->°C");
-		System.out.println("6. °C->°F");
-		System.out.println("7. 뒤로가기");
-		System.out.print("입력: ");
-		menu = scan.nextInt();
-		scan.nextLine();
-
-		while(menu>7||menu<1) {
-			System.out.print("다시 입력하세요. : ");
+			System.out.println("==<단위변환 메뉴>==");
+			System.out.println(" 1. pound->kg");
+			System.out.println(" 2. kg->pound");
+			System.out.println(" 3. inch->cm");
+			System.out.println(" 4. cm->inch");
+			System.out.println(" 5. °F->°C");
+			System.out.println(" 6. °C->°F");
+			System.out.println(" 7. 뒤로가기");
+			System.out.println("===============");
+			System.out.print("입력: ");
 			menu = scan.nextInt();
 			scan.nextLine();
-		}
 
-		switch(menu) {
-		case 1:
-			pound2kg();
-			System.out.println("");
-			break;
-		case 2:
-			kg2pound();
-			System.out.println("");
-			break;
-		case 3:
-			inch2cm();
-			System.out.println("");
-			break;
-		case 4:
-			cm2inch();
-			System.out.println("");
-			break;
-		case 5:
-			Fahrenheit2Celsius();
-			System.out.println("");
-			break;
-		case 6:
-			Celsius2Fahrenheit();
-			System.out.println("");
-			break;
-		case 7:
-			run=false;
-			System.out.println("");
-			break;
-		}
+			while(menu>7||menu<1) {
+				System.out.print("다시 입력하세요. : ");
+				menu = scan.nextInt();
+				scan.nextLine();
+			}	
+
+			switch(menu) {
+			case 1:
+				pound2kg();
+				System.out.println("");
+				break;
+			case 2:
+				kg2pound();
+				System.out.println("");
+				break;
+			case 3:
+				inch2cm();
+				System.out.println("");
+				break;
+			case 4:
+				cm2inch();
+				System.out.println("");
+				break;
+			case 5:
+				Fahrenheit2Celsius();
+				System.out.println("");
+				break;
+			case 6:
+				Celsius2Fahrenheit();
+				System.out.println("");
+				break;
+			case 7:
+				run=false;
+				System.out.println("");
+				break;
+			}
 		}while(run);
 	}
 
@@ -271,7 +272,6 @@ class calculator{	// 계산기 메뉴
 		double input;
 		double result;
 		String answer;
-		//System.out.println("");
 		while(true) {
 			System.out.print("\n입력(pound) : ");
 			input = scan.nextDouble();
