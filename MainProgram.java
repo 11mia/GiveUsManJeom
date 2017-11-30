@@ -54,16 +54,16 @@ class Accountbook {
 		while(number!=4){
 
 		System.out.println("========= <Purchase List> ========");
-		System.out.println("  ¹øÈ£    ±¸ÀÔ³¯Â¥      »óÇ°¸í      »óÇ°°¡°İ   ");
+		System.out.println("  ë²ˆí˜¸    êµ¬ì…ë‚ ì§œ      ìƒí’ˆëª…      ìƒí’ˆê°€ê²©   ");
 		for(int i=0;i<v.size();i++){
 			System.out.println(" ["+i+"] " + v.get(i).getday()
 					+ "\t"+v.get(i).getname()+"\t"+v.get(i).getprice());
 		}
 		System.out.println("=================================\n");
-		System.out.println("========== <°¡°èºÎ °ü¸® ¸Ş´º> ==========\n");
-		System.out.println("1. °¡°èºÎ ÀÛ¼º\n2. °¡°èºÎ ¾÷µ¥ÀÌÆ®\n3. ±¸ÀÔ ³»¿ª »èÁ¦\n4. µÚ·Î°¡±â\n");
+		System.out.println("========== <ê°€ê³„ë¶€ ê´€ë¦¬ ë©”ë‰´> ==========\n");
+		System.out.println("1. ê°€ê³„ë¶€ ì‘ì„±\n2. ê°€ê³„ë¶€ ì—…ë°ì´íŠ¸\n3. êµ¬ì… ë‚´ì—­ ì‚­ì œ\n4. ë’¤ë¡œê°€ê¸°\n");
 		System.out.println("=================================\n");
-		System.out.println("¸Ş´º ¹øÈ£ ÀÔ·Â:");
+		System.out.println("ë©”ë‰´ ë²ˆí˜¸ ì…ë ¥:");
 		number = scan.nextInt();
 		switch(number){
 		case 1:
@@ -76,9 +76,9 @@ class Accountbook {
 			Accountbook.deleteaccount(v);
 			break;
 		case 4:
-			return;//µÚ·Î°¡±â
+			return;//ë’¤ë¡œê°€ê¸°
 		default:
-			System.out.println("1-4 »çÀÌ¿¡¼­ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			System.out.println("1-4 ì‚¬ì´ì—ì„œ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			break;
 		}
 		}//main
@@ -89,66 +89,67 @@ class Accountbook {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		if(v.size()==0){
-            System.out.println("»èÁ¦ÇÒ Ç°¸ñÀÌ ¾ø½À´Ï´Ù.");
-            return;
+            		System.out.println("ì‚­ì œí•  í’ˆëª©ì´ ì—†ìŠµë‹ˆë‹¤.");
+            		return;
 		}
-		System.out.println("»èÁ¦ÇÒ ±¸ÀÔ³»¿ªÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä. ");
+		System.out.println("ì‚­ì œí•  êµ¬ì…ë‚´ì—­ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”. ");
 		int num;
 		do{
-		num = scan.nextInt();
-		if(num<0 || num >v.size()-1)
-            System.out.println("¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.");
+			num = scan.nextInt();
+			if(num<0 || num >v.size()-1)
+            		System.out.println("ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
 		}while(num<0 || num >v.size()-1);
-		System.out.println("  ¹øÈ£    ±¸ÀÔ³¯Â¥      »óÇ°¸í      »óÇ°°¡°İ   ");
+		
+		System.out.println("  ë²ˆí˜¸    êµ¬ì…ë‚ ì§œ      ìƒí’ˆëª…      ìƒí’ˆê°€ê²©   ");
 		System.out.println(" ["+num+"] " + v.get(num).getday()+"\t"+v.get(num).getname()+"\t"+v.get(num).getprice());
-		System.out.println("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?(Y/N)");
+		System.out.println("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?(Y/N)");
 		String ans = scan.next();
 		if(ans.equals("Y")||ans.equals("y"))
 			v.remove(num);
 		else if(ans.equals("N")||ans.equals("n"))
 			return;
-        else
-            System.out.println("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.(Y/N)\n");
+       		else
+            		System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.(Y/N)\n");
 
 	}
 	private static void updateaccount(Vector<item> v) {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		if(v.size()==0){
-            System.out.println("¼öÁ¤ÇÒ Ç°¸ñÀÌ ¾ø½À´Ï´Ù. ");
-            return;
+            		System.out.println("ìˆ˜ì •í•  í’ˆëª©ì´ ì—†ìŠµë‹ˆë‹¤. ");
+            		return;
 		}
-		System.out.println("¼öÁ¤ÇÒ ±¸ÀÔ³»¿ªÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä. ");
+		System.out.println("ìˆ˜ì •í•  êµ¬ì…ë‚´ì—­ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”. ");
 		int day, price, num;
 		String name;
 		do{
-		num = scan.nextInt();
-		if(num<0 || num >v.size()-1)
-            System.out.println("¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.");
+			num = scan.nextInt();
+			if(num<0 || num >v.size()-1)
+            			System.out.println("ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
 		}while(num<0 || num >v.size()-1);
-		//int num = scan.nextInt();
-		System.out.println("  ¹øÈ£    ±¸ÀÔ³¯Â¥      »óÇ°¸í      »óÇ°°¡°İ   ");
+		
+		System.out.println("  ë²ˆí˜¸    êµ¬ì…ë‚ ì§œ      ìƒí’ˆëª…      ìƒí’ˆê°€ê²©   ");
 		System.out.println(" ["+num+"] " + v.get(num).getday()+"  "+v.get(num).getname()+"   "+v.get(num).getprice());		
-		System.out.println("¼öÁ¤ÇÒ Ç×¸ñÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
-		System.out.println("1.±¸ÀÔ³¯Â¥\n2.»óÇ°¸í\n3.»óÇ°°¡°İ");
+		System.out.println("ìˆ˜ì •í•  í•­ëª©ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+		System.out.println("1.êµ¬ì…ë‚ ì§œ\n2.ìƒí’ˆëª…\n3.ìƒí’ˆê°€ê²©");
 		int cas;
 		
 		do{
 		cas=scan.nextInt();
 		if(cas==1){
-			System.out.println("±¸ÀÔ³¯Â¥:");
+			System.out.println("êµ¬ì…ë‚ ì§œ:");
 			day = scan.nextInt();
-			v.get(num).setday(day);}
-		else if(cas==2){
-			System.out.println("»óÇ°¸í:");
+			v.get(num).setday(day);
+		}else if(cas==2){
+			System.out.println("ìƒí’ˆëª…:");
 			name = scan.next();
 			v.get(num).setname(name);
 		}else if (cas==3){
-			System.out.println("»óÇ°°¡°İ:");
+			System.out.println("ìƒí’ˆê°€ê²©:");
 			price = scan.nextInt();
 			v.get(num).setprice(price);
 		}else{
-			System.out.println("1¹ø~3¹ø »çÀÌ¿¡¼­ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			System.out.println("1ë²ˆ~3ë²ˆ ì‚¬ì´ì—ì„œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		}	
 		}while(cas<1||cas>3);
 		
@@ -158,14 +159,14 @@ class Accountbook {
 	}
 	public static void addaccount(Vector<item> v){
 		Scanner scan = new Scanner(System.in);
-		System.out.println("±¸ÀÔ³»¿ªÀÇ Á¤º¸¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+		System.out.println("êµ¬ì…ë‚´ì—­ì˜ ì •ë³´ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 		int day, price;
 		String name;
-		System.out.println("±¸ÀÔ³¯Â¥:");
+		System.out.println("êµ¬ì…ë‚ ì§œ:");
 		day = scan.nextInt();
-		System.out.println("»óÇ°¸í:");
+		System.out.println("ìƒí’ˆëª…:");
 		name = scan.next();
-		System.out.println("»óÇ°°¡°İ:");
+		System.out.println("ìƒí’ˆê°€ê²©:");
 		price = scan.nextInt();
 		item i1 = new item(day,name,price);
 		v.add(i1);
@@ -175,13 +176,13 @@ class Accountbook {
 	}
 }
 
-class MemoManager {//¸Ş¸ğ°ü¸®±â´É
+class MemoManager {//ë©”ëª¨ê´€ë¦¬ê¸°ëŠ¥
 	public static void start(Vector v) {
 		 while (true) {
 	          System.out.println("\n===<Memo List>===");
 
 	          if (v.size() == 0) {
-	             System.out.println("-ÀúÀåµÈ ¸Ş¸ğ ¾øÀ½-");
+	             System.out.println("-ì €ì¥ëœ ë©”ëª¨ ì—†ìŒ-");
 	          }
 
 	          for (int i = 0; i < v.size(); i++) {
@@ -191,13 +192,13 @@ class MemoManager {//¸Ş¸ğ°ü¸®±â´É
 	          System.out.println(": " + str);
 	          }
 	          System.out.println("=================");
-	          System.out.println("==<¸Ş¸ğ °ü¸® ¸Ş´º>==");
-	          System.out.println("1.¸Ş¸ğ »ı¼º");
-	          System.out.println("2.¸Ş¸ğ ¾÷µ¥ÀÌÆ®");
-	          System.out.println("3.¸Ş¸ğ »èÁ¦");
-	          System.out.println("4.µÚ·Î°¡±â");
+	          System.out.println("==<ë©”ëª¨ ê´€ë¦¬ ë©”ë‰´>==");
+	          System.out.println("1.ë©”ëª¨ ìƒì„±");
+	          System.out.println("2.ë©”ëª¨ ì—…ë°ì´íŠ¸");
+	          System.out.println("3.ë©”ëª¨ ì‚­ì œ");
+	          System.out.println("4.ë’¤ë¡œê°€ê¸°");
 	          System.out.println("==============");
-	          System.out.print("ÀÔ·Â: ");
+	          System.out.print("ì…ë ¥: ");
 
 	          Scanner sc = new Scanner(System.in);
 	          int selection = sc.nextInt();
@@ -220,19 +221,19 @@ class MemoManager {//¸Ş¸ğ°ü¸®±â´É
 	          }
 
 	          else if (selection == 4) {
-	        	  System.out.println("¸ŞÀÎÈ­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+	        	  System.out.println("ë©”ì¸í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 	        	  break;
 	          }
 
 	          else {
-	          System.out.println("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.");
+	          System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
 	          }
 		 }//while
 	}
 
 	public void addmemo(Vector v) {
-		 System.out.println("Ãß°¡ÇÒ ¸Ş¸ğ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
-         System.out.print("ÀÔ·Â: ");
+		 System.out.println("ì¶”ê°€í•  ë©”ëª¨ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.");
+         System.out.print("ì…ë ¥: ");
 		 Scanner sc1 = new Scanner(System.in);
          String memo = sc1.nextLine();
          //String memo1=sc1.ne
@@ -245,17 +246,17 @@ class MemoManager {//¸Ş¸ğ°ü¸®±â´É
 
 		while(true) {
 			if (v.size() == 0) {
-				 System.out.println("ÀúÀåµÈ ¸Ş¸ğ°¡ ¾ø¾î ¸Ş¸ğ ¼öÁ¤ ±â´ÉÀ» ¼öÇàÇÒ ¼ö ¾ø½À´Ï´Ù.\n¸Ş¸ğ°ü¸® ¸Ş´ºÈ­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+				 System.out.println("ì €ì¥ëœ ë©”ëª¨ê°€ ì—†ì–´ ë©”ëª¨ ìˆ˜ì • ê¸°ëŠ¥ì„ ìˆ˜í–‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\në©”ëª¨ê´€ë¦¬ ë©”ë‰´í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				 break;
 			 }
 
-			System.out.println("¼öÁ¤ÇÒ ¸Ş¸ğ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
-			System.out.print("ÀÔ·Â: ");
+			System.out.println("ìˆ˜ì •í•  ë©”ëª¨ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+			System.out.print("ì…ë ¥: ");
 			Scanner sc2 = new Scanner(System.in);
 			number = sc2.nextInt();
 
 			if (number > v.size() || number == 0 || number < 0) {
-				System.out.println("¼öÁ¤ÇÒ ÇØ´ç ¸Ş¸ğ°¡ ¾ø½À´Ï´Ù.\n<MemoList>¿¡ ÀÖ´Â ¸Ş¸ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("ìˆ˜ì •í•  í•´ë‹¹ ë©”ëª¨ê°€ ì—†ìŠµë‹ˆë‹¤.\n<MemoList>ì— ìˆëŠ” ë©”ëª¨ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 			}
 
 			else {
@@ -264,8 +265,8 @@ class MemoManager {//¸Ş¸ğ°ü¸®±â´É
 				System.out.print(number);
 				System.out.println(": " + str);
 				v.remove(number-1);
-				System.out.println("¿øÇÏ´Â ³»¿ëÀ¸·Î ¸Ş¸ğ¸¦ ¼öÁ¤ÇÏ¼¼¿ä.");
-				System.out.print("ÀÔ·Â: ");
+				System.out.println("ì›í•˜ëŠ” ë‚´ìš©ìœ¼ë¡œ ë©”ëª¨ë¥¼ ìˆ˜ì •í•˜ì„¸ìš”.");
+				System.out.print("ì…ë ¥: ");
 				Scanner sc2_1 = new Scanner(System.in);
 				String memo = sc2_1.nextLine();
 				v.add(number-1, memo);
@@ -279,27 +280,27 @@ class MemoManager {//¸Ş¸ğ°ü¸®±â´É
 		String YesOrNo;
 		while (true) {
 			if (v.size() == 0) {
-				System.out.println("ÀúÀåµÈ ¸Ş¸ğ°¡ ¾ø¾î  ¸Ş¸ğ »èÁ¦ ±â´ÉÀ» ¼öÇàÇÒ ¼ö ¾ø½À´Ï´Ù.\n¸Ş¸ğ°ü¸® ¸Ş´ºÈ­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+				System.out.println("ì €ì¥ëœ ë©”ëª¨ê°€ ì—†ì–´  ë©”ëª¨ ì‚­ì œ ê¸°ëŠ¥ì„ ìˆ˜í–‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\në©”ëª¨ê´€ë¦¬ ë©”ë‰´í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
  				break;
  			}
 
-			System.out.println("»èÁ¦¸¦ ¿øÇÏ´Â ÇØ´ç ¸Ş¸ğÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+			System.out.println("ì‚­ì œë¥¼ ì›í•˜ëŠ” í•´ë‹¹ ë©”ëª¨ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 			Scanner sc3 = new Scanner(System.in);
 			number = sc3.nextInt();
 
 			if (number > v.size() || number == 0 || number < 0) {
-				System.out.println("ÇØ´ç ¸Ş¸ğ°¡ ¾ø½À´Ï´Ù. À¯È¿ÇÑ ¸Ş¸ğ ¹øÈ£ ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.");
+				System.out.println("í•´ë‹¹ ë©”ëª¨ê°€ ì—†ìŠµë‹ˆë‹¤. ìœ íš¨í•œ ë©”ëª¨ ë²ˆí˜¸ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
 				//break;//
 			}
 
 			else {
 				while (true) {
 
-				System.out.print("Á¤¸» ÇØ´ç ¸Ş¸ğ¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?(Y/N): ");
+				System.out.print("ì •ë§ í•´ë‹¹ ë©”ëª¨ë¥¼ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?(Y/N): ");
 				Scanner sc4 = new Scanner(System.in);
 				YesOrNo = sc4.nextLine();
 				if (true == !(YesOrNo.equals("Y") || YesOrNo.equals("y") || YesOrNo.equals("N") || YesOrNo.equals("n")))
-					System.out.println("'Y' ¶Ç´Â'N'À¸·Î Á¦´ë·Î ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.");
+					System.out.println("'Y' ë˜ëŠ”'N'ìœ¼ë¡œ ì œëŒ€ë¡œ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
 				else
 					break;
 				}
@@ -307,13 +308,13 @@ class MemoManager {//¸Ş¸ğ°ü¸®±â´É
 				if (YesOrNo.equals("Y") || YesOrNo.equals("y")) {
 
 					v.remove(number-1);
-					System.out.println("ÇØ´ç ¸Ş¸ğ¸¦ »èÁ¦ÇÏ¿´½À´Ï´Ù.");
-					System.out.println("¸Ş¸ğ°ü¸® ¸Ş´ºÈ­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+					System.out.println("í•´ë‹¹ ë©”ëª¨ë¥¼ ì‚­ì œí•˜ì˜€ìŠµë‹ˆë‹¤.");
+					System.out.println("ë©”ëª¨ê´€ë¦¬ ë©”ë‰´í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				}
 
 				else if (YesOrNo.equals("N") || YesOrNo.equals("n")) {
-					System.out.println("ÇØ´ç ¸Ş¸ğ¸¦ »èÁ¦ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.");
-					System.out.println("¸Ş¸ğ°ü¸® ¸Ş´ºÈ­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+					System.out.println("í•´ë‹¹ ë©”ëª¨ë¥¼ ì‚­ì œí•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+					System.out.println("ë©”ëª¨ê´€ë¦¬ ë©”ë‰´í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				}
 
 			break;
@@ -322,7 +323,7 @@ class MemoManager {//¸Ş¸ğ°ü¸®±â´É
 	}
 }
 
-public class MainProgram {//¸ŞÀÎ¸Ş´º
+public class MainProgram {//ë©”ì¸ë©”ë‰´
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner (System.in);
@@ -330,29 +331,29 @@ public class MainProgram {//¸ŞÀÎ¸Ş´º
 		Vector<item> v2 = new Vector<item>();
 		while (true) {
 		System.out.printf("========= MENU =========%n"
-				+ "1. Memo manager (¸Ş¸ğ°ü¸®)%n"
-				+ "2. Calculator (°è»ê±â)%n"
-				+ "3. Account book (°¡°èºÎ)%n"
-				+ "4. Exit (Á¾·á)%n"
+				+ "1. Memo manager (ë©”ëª¨ê´€ë¦¬)%n"
+				+ "2. Calculator (ê³„ì‚°ê¸°)%n"
+				+ "3. Account book (ê°€ê³„ë¶€)%n"
+				+ "4. Exit (ì¢…ë£Œ)%n"
 				+ "========================%n");
-		System.out.printf("¸Ş´º ¹øÈ£ ÀÔ·Â: ");
-		int sel = scan.nextInt();	// ¹øÈ£ ÀÔ·Â
+		System.out.printf("ë©”ë‰´ ë²ˆí˜¸ ì…ë ¥: ");
+		int sel = scan.nextInt();	// ë²ˆí˜¸ ì…ë ¥
 
 		if (sel==1) {
 			MemoManager menu1 = new MemoManager();
 			menu1.start(v);
-		}// ¸Ş¸ğ°ü¸® ¸Ş´º È£Ãâ
+		}// ë©”ëª¨ê´€ë¦¬ ë©”ë‰´ í˜¸ì¶œ
 		else if (sel==2){
 			new calculator();
-		}// °è»ê±â ¸Ş´º È£Ãâ
+		}// ê³„ì‚°ê¸° ë©”ë‰´ í˜¸ì¶œ
 		else if (sel==3){
             Accountbook.mainaccount(v2);
-		}// °¡°èºÎ ¸Ş´º È£Ãâ
-		else if (sel==4) { // Á¾·á
+		}// ê°€ê³„ë¶€ ë©”ë‰´ í˜¸ì¶œ
+		else if (sel==4) { // ì¢…ë£Œ
 			break;
 		}
 		else {
-			System.out.println("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä. ");
+			System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”. ");
 		}
 		}
 	}
@@ -366,14 +367,14 @@ class calculator{
 		System.out.println("");
 
 		do {
-			System.out.println("1.°è»ê");
-			System.out.println("2.´ÜÀ§º¯È¯");
-			System.out.println("3.µÚ·Î°¡±â");
-			System.out.print("ÀÔ·Â : ");
+			System.out.println("1.ê³„ì‚°");
+			System.out.println("2.ë‹¨ìœ„ë³€í™˜");
+			System.out.println("3.ë’¤ë¡œê°€ê¸°");
+			System.out.print("ì…ë ¥ : ");
 
 			input = scan.nextInt();
 			while(input>3||input<0) {
-				System.out.println("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä. : ");
+				System.out.println("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”. : ");
 				input=scan.nextInt();
 			}
 			if(input==1)
@@ -391,13 +392,13 @@ class calculator{
 		//boolean run=true;
 		String answer;
 		do {
-		System.out.print("\n¼ıÀÚ1 : ");
+		System.out.print("\nìˆ«ì1 : ");
 		num1 = scan.nextDouble();
 		scan.nextLine();
-		System.out.print("¼ıÀÚ2 : ");
+		System.out.print("ìˆ«ì2 : ");
 		num2 = scan.nextDouble();
 		scan.nextLine();
-		System.out.print("¿¬»êÀÚ(+,-,*,/) : ");
+		System.out.print("ì—°ì‚°ì(+,-,*,/) : ");
 		operator=scan.nextLine();
 
 		if(operator.equals("+"))
@@ -409,12 +410,12 @@ class calculator{
 		else if(operator.equals("/"))
 			result = num1/num2;
 
-		System.out.println("¿¬»ê°á°ú : "+result);
-		System.out.print("´Ù½Ã ÇÏ½Ã°Ú½À´Ï±î? (Y/N) : ");
+		System.out.println("ì—°ì‚°ê²°ê³¼ : "+result);
+		System.out.print("ë‹¤ì‹œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N) : ");
 		answer = scan.nextLine();
 
 		while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-			System.out.print("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä : ");
+			System.out.print("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš” : ");
 			answer = scan.nextLine();
 			//scan.nextLine();
 		}
@@ -435,15 +436,15 @@ class calculator{
 		System.out.println("2. kg->pound");
 		System.out.println("3. inch->cm");
 		System.out.println("4. cm->inch");
-		System.out.println("5. ¡ÆF->¡ÆC");
-		System.out.println("6. ¡ÆC->¡ÆF");
-		System.out.println("7. µÚ·Î°¡±â");
-		System.out.print("ÀÔ·Â: ");
+		System.out.println("5. Â°F->Â°C");
+		System.out.println("6. Â°C->Â°F");
+		System.out.println("7. ë’¤ë¡œê°€ê¸°");
+		System.out.print("ì…ë ¥: ");
 		menu = scan.nextInt();
 		scan.nextLine();
 
 		while(menu>7||menu<1) {
-			System.out.print("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä. : ");
+			System.out.print("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”. : ");
 			menu = scan.nextInt();
 			scan.nextLine();
 		}
@@ -490,15 +491,15 @@ class calculator{
 		String answer;
 		//System.out.println("");
 		while(true) {
-			System.out.print("\nÀÔ·Â(pound) : ");
+			System.out.print("\nì…ë ¥(pound) : ");
 			input = scan.nextDouble();
 			scan.nextLine();
 			result = input*0.453592;
-			System.out.println("º¯È¯ °á°ú(kg) : "+result);
-			System.out.print("´Ù½Ã ÇÏ½Ã°Ú½À´Ï±î? (Y/N) : ");
+			System.out.println("ë³€í™˜ ê²°ê³¼(kg) : "+result);
+			System.out.print("ë‹¤ì‹œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N) : ");
 			answer = scan.nextLine();
 			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä : ");
+				System.out.print("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš” : ");
 				answer = scan.nextLine();
 			}
 			if(answer.equals("n")||answer.equals("N"))
@@ -511,15 +512,15 @@ class calculator{
 		double result;
 		String answer;
 		while(true) {
-			System.out.print("\nÀÔ·Â(kg) : ");
+			System.out.print("\nì…ë ¥(kg) : ");
 			input = scan.nextDouble();
 			scan.nextLine();
 			result = input*2.20462;
-			System.out.println("º¯È¯ °á°ú(pound) : "+result);
-			System.out.print("´Ù½Ã ÇÏ½Ã°Ú½À´Ï±î? (Y/N) : ");
+			System.out.println("ë³€í™˜ ê²°ê³¼(pound) : "+result);
+			System.out.print("ë‹¤ì‹œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N) : ");
 			answer = scan.nextLine();
 			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä : ");
+				System.out.print("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš” : ");
 				answer = scan.nextLine();
 			}
 			if(answer.equals("n")||answer.equals("N"))
@@ -532,15 +533,15 @@ class calculator{
 		double result;
 		String answer;
 		while(true) {
-			System.out.print("\nÀÔ·Â(inch) : ");
+			System.out.print("\nì…ë ¥(inch) : ");
 			input = scan.nextDouble();
 			scan.nextLine();
 			result = input*2.54;
-			System.out.println("º¯È¯ °á°ú(cm) : "+result);
-			System.out.print("´Ù½Ã ÇÏ½Ã°Ú½À´Ï±î? (Y/N) : ");
+			System.out.println("ë³€í™˜ ê²°ê³¼(cm) : "+result);
+			System.out.print("ë‹¤ì‹œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N) : ");
 			answer = scan.nextLine();
 			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä : ");
+				System.out.print("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš” : ");
 				answer = scan.nextLine();
 			}
 			if(answer.equals("n")||answer.equals("N"))
@@ -553,15 +554,15 @@ class calculator{
 		double result;
 		String answer;
 		while(true) {
-			System.out.print("\nÀÔ·Â(cm) : ");
+			System.out.print("\nì…ë ¥(cm) : ");
 			input = scan.nextDouble();
 			scan.nextLine();
 			result = input*0.393701;
-			System.out.println("º¯È¯ °á°ú(inch) : "+result);
-			System.out.print("´Ù½Ã ÇÏ½Ã°Ú½À´Ï±î? (Y/N) : ");
+			System.out.println("ë³€í™˜ ê²°ê³¼(inch) : "+result);
+			System.out.print("ë‹¤ì‹œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N) : ");
 			answer = scan.nextLine();
 			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä : ");
+				System.out.print("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš” : ");
 				answer = scan.nextLine();
 			}
 			if(answer.equals("n")||answer.equals("N"))
@@ -574,15 +575,15 @@ class calculator{
 		double result;
 		String answer;
 		while(true) {
-			System.out.print("\nÀÔ·Â(¡ÆF) : ");
+			System.out.print("\nì…ë ¥(Â°F) : ");
 			input = scan.nextDouble();
 			scan.nextLine();
 			result = (input-32)/1.8;
-			System.out.println("º¯È¯ °á°ú(¡ÆC) : "+result);
-			System.out.print("´Ù½Ã ÇÏ½Ã°Ú½À´Ï±î? (Y/N) : ");
+			System.out.println("ë³€í™˜ ê²°ê³¼(Â°C) : "+result);
+			System.out.print("ë‹¤ì‹œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N) : ");
 			answer = scan.nextLine();
 			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä : ");
+				System.out.print("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš” : ");
 				answer = scan.nextLine();
 			}
 			if(answer.equals("n")||answer.equals("N"))
@@ -595,15 +596,15 @@ class calculator{
 		double result;
 		String answer;
 		while(true) {
-			System.out.print("\nÀÔ·Â(¡ÆF) : ");
+			System.out.print("\nì…ë ¥(Â°F) : ");
 			input = scan.nextDouble();
 			scan.nextLine();
 			result = input*1.8+32;
-			System.out.println("º¯È¯ °á°ú(¡ÆC) : "+result);
-			System.out.print("´Ù½Ã ÇÏ½Ã°Ú½À´Ï±î? (Y/N) : ");
+			System.out.println("ë³€í™˜ ê²°ê³¼(Â°C) : "+result);
+			System.out.print("ë‹¤ì‹œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N) : ");
 			answer = scan.nextLine();
 			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä : ");
+				System.out.print("ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš” : ");
 				answer = scan.nextLine();
 			}
 			if(answer.equals("n")||answer.equals("N"))
