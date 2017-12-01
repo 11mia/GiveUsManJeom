@@ -488,7 +488,7 @@ class Accountbook { // 가계부 관리 메뉴
 				,i+1,v.get(i).getday(),v.get(i).getname(),v.get(i).getprice());	
 		System.out.println("정말 삭제하시겠습니까?(Y/N)");
 		String ans = scan.next();
-		while(1){
+		while(true){
 			if(ans.equals("Y")||ans.equals("y")||ans.equals("N")||ans.equals("n")){
 				if(ans.equals("Y")||ans.equals("y")){
 					v.remove(num);
