@@ -434,21 +434,19 @@ class item{
 class Accountbook { // 가계부 관리 메뉴
 	public static int i=0;
 	public static void mainaccount(Vector<item> v){
-	//private static Object Vector;
 			
 		Scanner scan = new Scanner(System.in);
 		int number=1;
-		//Vector<item> v = new Vector<item>();
 		while(number!=4){
 			System.out.println("========= <Purchase List> ========");
-			System.out.println("  번호    구입날짜      상품명      상품가격   ");
+			System.out.println("번호\t구입날짜 \t상품명\t상품가격   ");
 			for(int i=0;i<v.size();i++){
-				System.out.println(" ["+i+"] " + v.get(i).getday()
-						+	 "\t"+v.get(i).getname()+"\t"+v.get(i).getprice());
+				System.out.printf("[%d]%10d%10s%10d\n"
+						,i+1,v.get(i).getday(),v.get(i).getname(),v.get(i).getprice());	
 			}
 			System.out.println("=================================\n");
-			System.out.println("========== <가계부 관리 메뉴> ==========\n");
-			System.out.println("1. 가계부 작성\n2. 가계부 업데이트\n3. 구입 내역 삭제\n4. 뒤로가기\n");
+			System.out.println("========== <가계부 관리 메뉴> ==========");
+			System.out.println("1. 가계부 작성\n2. 가계부 업데이트\n3. 구입 내역 삭제\n4. 뒤로가기");
 			System.out.println("=================================\n");
 			System.out.print("메뉴 번호 입력: ");
 			number = scan.nextInt();
@@ -481,21 +479,25 @@ class Accountbook { // 가계부 관리 메뉴
 		System.out.print("삭제할 구입내역의 번호를 입력하세요. ");
 		int num;
 		do{
-			num = scan.nextInt();
+			num = scan.nextInt()-1;
 			if(num<0 || num >v.size()-1)
             		System.out.println("번호를 다시 입력하세요.");
 		}while(num<0 || num >v.size()-1);
-		
-		System.out.println("  번호    구입날짜      상품명      상품가격   ");
-		System.out.println(" ["+num+"] " + v.get(num).getday()+"\t"+v.get(num).getname()+"\t"+v.get(num).getprice());
+		System.out.println("번호\t구입날짜 \t상품명\t상품가격   ");
+		System.out.printf("[%d]%10d%10s%10d\n"
+				,i+1,v.get(i).getday(),v.get(i).getname(),v.get(i).getprice());	
 		System.out.println("정말 삭제하시겠습니까?(Y/N)");
 		String ans = scan.next();
-		if(ans.equals("Y")||ans.equals("y"))
-			v.remove(num);
-		else if(ans.equals("N")||ans.equals("n"))
-			return;
-       		else
-            		System.out.print("다시 입력하세요.(Y/N) ");
+		while(1){
+			if(ans.equals("Y")||ans.equals("y")||ans.equals("N")||ans.equals("n")){
+				if(ans.equals("Y")||ans.equals("y")){
+					v.remove(num);
+					break;
+				}else if(ans.equals("N")||ans.equals("n")) return;
+			}
+			System.out.print("다시 입력하세요.(Y/N)");
+			ans = scan.next();
+		}
 	}
 	
 	private static void updateaccount(Vector<item> v) {	// 가계부 업데이트
@@ -508,13 +510,14 @@ class Accountbook { // 가계부 관리 메뉴
 		int day, price, num;
 		String name;
 		do{
-			num = scan.nextInt();
+			num = scan.nextInt()-1;
 			if(num<0 || num >v.size()-1)
             			System.out.println("번호를 다시 입력하세요.");
 		}while(num<0 || num >v.size()-1);
 		
-		System.out.println("  번호    구입날짜      상품명      상품가격   ");
-		System.out.println(" ["+num+"] " + v.get(num).getday()+"  "+v.get(num).getname()+"   "+v.get(num).getprice());		
+		System.out.println("번호\t구입날짜 \t상품명\t상품가격   ");
+		System.out.printf("[%d]%10d%10s%10d\n"
+				,i+1,v.get(i).getday(),v.get(i).getname(),v.get(i).getprice());	
 		System.out.println("수정할 항목의 번호를 입력하세요.");
 		System.out.println("1.구입날짜\n2.상품명\n3.상품가격");
 		int cas;
