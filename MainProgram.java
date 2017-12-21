@@ -150,10 +150,8 @@ class calculator{	// 계산기 메뉴
 	static Scanner scan = new Scanner (System.in);
 	calculator() {
 		int input;
-		System.out.println("");
-
 		do {
-			System.out.println("=<계산기 메뉴>=");
+			System.out.println("\n=<계산기 메뉴>=");
 			System.out.println(" 1.계산");
 			System.out.println(" 2.단위변환");
 			System.out.println(" 3.뒤로가기");
@@ -180,6 +178,8 @@ class calculator{	// 계산기 메뉴
 		double num1,num2,result=0;
 		String operator;
 		String answer;
+		boolean run = true;
+		
 		do {
 		System.out.print("\n숫자1 : ");
 		num1 = scan.nextDouble();
@@ -191,35 +191,47 @@ class calculator{	// 계산기 메뉴
 		operator=scan.nextLine();
 
 		if(operator.equals("+"))
-			result = num1+num2;
+			result = Add(num1,num2);
 		else if(operator.equals("-"))
-			result = num1-num2;
+			result = Sub(num1,num2);
 		else if(operator.equals("*"))
-				result = num1*num2;
+			result = Mul(num1,num2);
 		else if(operator.equals("/"))
-			result = num1/num2;
+			result = Div(num1,num2);
+			
 
 		System.out.println("연산결과 : "+result);
 		System.out.print("다시 하시겠습니까? (Y/N) : ");
 		answer = scan.nextLine();
-
-		while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-			System.out.print("다시 입력하세요 : ");
-			answer = scan.nextLine();
-		}
-		if(answer.equals("n")||answer.equals("N")) {
-			System.out.println("");
-			break;
-		}
-		}while(true);
+		run = YesNo(answer);
+		}while(run);
 	}
+	
+	public static double Add(double num1,double num2) {
+		return num1+num2;
+	}
+	public static double Sub(double num1,double num2) {
+		return num1-num2;
+	}
+	public static double Mul(double num1,double num2) {
+		return num1*num2;
+	}
+	public static double Div(double num1,double num2) {
+		return num1/num2;
+	}
+	
 
 	public static void convert() {	// 단위변환
 		int menu;
 		boolean run = true;
-		System.out.println("");
+		boolean run1=true;
+		double input;
+		double result;
+		String answer;
+		
 		do {
-			System.out.println("==<단위변환 메뉴>==");
+			run=true;
+			System.out.println("\n==<단위변환 메뉴>==");
 			System.out.println(" 1. pound->kg");
 			System.out.println(" 2. kg->pound");
 			System.out.println(" 3. inch->cm");
@@ -240,163 +252,136 @@ class calculator{	// 계산기 메뉴
 
 			switch(menu) {
 			case 1:
-				pound2kg();
-				System.out.println("");
+				while(run) {
+					System.out.print("\n입력(pound) : ");
+					input = scan.nextDouble();
+					scan.nextLine();
+					result = pound2kg(input);
+					System.out.println("변환 결과(kg) : "+result);
+				
+					System.out.print("다시 하시겠습니까? (Y/N) : ");
+					answer = scan.nextLine();
+					run = YesNo(answer);
+				}
 				break;
+				
 			case 2:
-				kg2pound();
-				System.out.println("");
+				while(run) {
+					System.out.print("\n입력(kg) : ");
+					input = scan.nextDouble();
+					scan.nextLine();
+					result = kg2pound(input);
+					System.out.println("변환 결과(pound) : "+result);
+					System.out.print("다시 하시겠습니까? (Y/N) : ");
+					answer = scan.nextLine();
+					run = YesNo(answer);
+				}
 				break;
 			case 3:
-				inch2cm();
-				System.out.println("");
+				while(run) {
+					System.out.print("\n입력(inch) : ");
+					input = scan.nextDouble();
+					scan.nextLine();
+					result = inch2cm(input);
+					System.out.println("변환 결과(cm) : "+result);
+					System.out.print("다시 하시겠습니까? (Y/N) : ");
+					answer = scan.nextLine();
+					run = YesNo(answer);
+				}
 				break;
 			case 4:
-				cm2inch();
-				System.out.println("");
+				while(run) {
+					System.out.print("\n입력(cm) : ");
+					input = scan.nextDouble();
+					scan.nextLine();
+					result = cm2inch(input);
+					System.out.println("변환 결과(inch) : "+result);
+					System.out.print("다시 하시겠습니까? (Y/N) : ");
+					answer = scan.nextLine();
+					run = YesNo(answer);
+				}
 				break;
 			case 5:
-				Fahrenheit2Celsius();
-				System.out.println("");
+				while(run) {
+					System.out.print("\n입력(°F) : ");
+					input = scan.nextDouble();
+					scan.nextLine();
+					result = Fahrenheit2Celsius(input);
+					System.out.println("변환 결과(°C) : "+result);
+					System.out.print("다시 하시겠습니까? (Y/N) : ");
+					answer = scan.nextLine();
+					run = YesNo(answer);
+				}
 				break;
 			case 6:
-				Celsius2Fahrenheit();
-				System.out.println("");
+				while(run) {
+					System.out.print("\n입력(°C) : ");
+					input = scan.nextDouble();
+					scan.nextLine();
+					result = Celsius2Fahrenheit(input);
+					System.out.println("변환 결과(°F) : "+result);
+					System.out.print("다시 하시겠습니까? (Y/N) : ");
+					answer = scan.nextLine();
+					run = YesNo(answer);
+				}
 				break;
 			case 7:
-				run=false;
-				System.out.println("");
+				run1=false;
 				break;
 			}
-		}while(run);
+		}while(run1);
+	}
+	
+	public static boolean YesNo(String answer) {
+		while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
+			System.out.print("다시 입력하세요 : ");
+			answer = scan.nextLine();
+		}
+		if(answer.equals("n")||answer.equals("N"))
+			return false;
+		else
+			return true;
+		
 	}
 
-	public static void pound2kg() {
-		double input;
+	
+	public static double pound2kg(double input) {
 		double result;
-		String answer;
-		while(true) {
-			System.out.print("\n입력(pound) : ");
-			input = scan.nextDouble();
-			scan.nextLine();
-			result = input*0.453592;
-			System.out.println("변환 결과(kg) : "+result);
-			System.out.print("다시 하시겠습니까? (Y/N) : ");
-			answer = scan.nextLine();
-			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("다시 입력하세요 : ");
-				answer = scan.nextLine();
-			}
-			if(answer.equals("n")||answer.equals("N"))
-				break;
-		}
+		result = input*0.453592;
+		return result;
 	}
 
-	public static void kg2pound() {
-		double input;
+	public static double kg2pound(double input) {
 		double result;
-		String answer;
-		while(true) {
-			System.out.print("\n입력(kg) : ");
-			input = scan.nextDouble();
-			scan.nextLine();
-			result = input*2.20462;
-			System.out.println("변환 결과(pound) : "+result);
-			System.out.print("다시 하시겠습니까? (Y/N) : ");
-			answer = scan.nextLine();
-			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("다시 입력하세요 : ");
-				answer = scan.nextLine();
-			}
-			if(answer.equals("n")||answer.equals("N"))
-				break;
-		}
+		result = input*2.20462;
+		return result;	
 	}
 
-	public static void inch2cm() {
-		double input;
+	public static double inch2cm(double input) {
 		double result;
-		String answer;
-		while(true) {
-			System.out.print("\n입력(inch) : ");
-			input = scan.nextDouble();
-			scan.nextLine();
-			result = input*2.54;
-			System.out.println("변환 결과(cm) : "+result);
-			System.out.print("다시 하시겠습니까? (Y/N) : ");
-			answer = scan.nextLine();
-			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("다시 입력하세요 : ");
-				answer = scan.nextLine();
-			}
-			if(answer.equals("n")||answer.equals("N"))
-				break;
-		}
+		result = input*2.54;
+		return result;	
 	}
 
-	public static void cm2inch() {
-		double input;
+	public static double cm2inch(double input) {
 		double result;
-		String answer;
-		while(true) {
-			System.out.print("\n입력(cm) : ");
-			input = scan.nextDouble();
-			scan.nextLine();
-			result = input*0.393701;
-			System.out.println("변환 결과(inch) : "+result);
-			System.out.print("다시 하시겠습니까? (Y/N) : ");
-			answer = scan.nextLine();
-			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("다시 입력하세요 : ");
-				answer = scan.nextLine();
-			}
-			if(answer.equals("n")||answer.equals("N"))
-				break;
-		}
+		result = input*0.393701;
+		return result;
 	}
 
-	public static void Fahrenheit2Celsius() {
-		double input;
+	public static double Fahrenheit2Celsius(double input) {
 		double result;
-		String answer;
-		while(true) {
-			System.out.print("\n입력(°F) : ");
-			input = scan.nextDouble();
-			scan.nextLine();
-			result = (input-32)/1.8;
-			System.out.println("변환 결과(°C) : "+result);
-			System.out.print("다시 하시겠습니까? (Y/N) : ");
-			answer = scan.nextLine();
-			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("다시 입력하세요 : ");
-				answer = scan.nextLine();
-			}
-			if(answer.equals("n")||answer.equals("N"))
-				break;
-		}
+		result = (input-32)/1.8;
+		return result;
 	}
 
-	public static void Celsius2Fahrenheit() {
-		double input;
+	public static double Celsius2Fahrenheit(double input) {
 		double result;
-		String answer;
-		while(true) {
-			System.out.print("\n입력(°F) : ");
-			input = scan.nextDouble();
-			scan.nextLine();
-			result = input*1.8+32;
-			System.out.println("변환 결과(°C) : "+result);
-			System.out.print("다시 하시겠습니까? (Y/N) : ");
-			answer = scan.nextLine();
-			while(!(answer.equals("n")||answer.equals("N")||answer.equals("y")||answer.equals("Y"))) {
-				System.out.print("다시 입력하세요 : ");
-				answer = scan.nextLine();
-			}
-			if(answer.equals("n")||answer.equals("N"))
-				break;
-		}
+		result = input*1.8+32;
+		return result;
 	}
 }
+
 
 class item{
 	int day;
