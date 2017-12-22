@@ -11,9 +11,9 @@ public class Test_MemoManager_1512084 {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("testAddMemoMYK.txt"));
 		BufferedReader br = new BufferedReader(new FileReader("testAddMemoMYK.txt"));
 		
-		MemoManager.addStringMemo(bw, "첫번째 메모 추가");
+		MemoManager.addStringMemo(bw, "add first memo");
 		
-		assertEquals("첫번째 메모 추가", br.readLine());
+		assertEquals("add first memo", br.readLine());
 	}
 	
 	@Test
@@ -21,10 +21,10 @@ public class Test_MemoManager_1512084 {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("testDeleteMemoMYK.txt"));
 		BufferedReader br = new BufferedReader(new FileReader("testDeleteMemoMYK.txt"));
 		
-		bw.write("첫번째 줄 메모");	bw.newLine();
-		bw.write("두번째 줄 메모");	bw.newLine();
-		bw.write("세번째 줄 메모");	bw.newLine(); bw.close();
+		bw.write("first line memo");	bw.newLine();
+		bw.write("second line memo");	bw.newLine();
+		bw.write("third line memo");	bw.newLine(); bw.close();
 		
-		assertEquals(MemoManager.selectMemoLineTobeDeleted(br, 2), "두번째 줄 메모");		
+		assertEquals(MemoManager.selectMemoLineTobeDeleted(br, 2), "second line memo");		
 	}	
 }
