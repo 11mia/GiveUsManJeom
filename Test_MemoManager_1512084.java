@@ -8,23 +8,23 @@ import org.junit.Test;
 public class Test_MemoManager_1512084 {
 	@Test
 	public void testAddStringMemo() throws Exception {
-		BufferedWriter bw = new BufferedWriter(new FileWriter("testAddMemoMYK.txt"));
-		BufferedReader br = new BufferedReader(new FileReader("testAddMemoMYK.txt"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter("testAddMemo.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("testAddMemo.txt"));
 		
-		MemoManager.addStringMemo(bw, "add first memo");
+		MemoManager.addStringMemo(bw, "add memo");
 		
-		assertEquals("add first memo", br.readLine());
+		assertEquals("add memo", br.readLine());
 	}
 	
 	@Test
 	public void testCorrectnessSeletedMemoToBeDeleted() throws Exception {
-		BufferedWriter bw = new BufferedWriter(new FileWriter("testDeleteMemoMYK.txt"));
-		BufferedReader br = new BufferedReader(new FileReader("testDeleteMemoMYK.txt"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter("testDeleteMemo.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("testDeleteMemo.txt"));
 		
-		bw.write("first line memo");	bw.newLine();
-		bw.write("second line memo");	bw.newLine();
-		bw.write("third line memo");	bw.newLine(); bw.close();
+		bw.write("first");	bw.newLine();
+		bw.write("second");	bw.newLine();
+		bw.write("third");	bw.newLine(); bw.close();
 		
-		assertEquals(MemoManager.selectMemoLineTobeDeleted(br, 2), "second line memo");		
+		assertEquals(MemoManager.selectMemoLineTobeDeleted(br, 2), "second");		
 	}	
 }
