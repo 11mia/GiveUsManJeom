@@ -11,8 +11,8 @@ public class Test_1515655 {		/* 1515655 임소희 (main & organization 담당)
 	
 	@Test
 	public void testMemoUpdated() throws Exception { // 수정할 메모 번호를 정확히 수정하는지 테스트
-		BufferedWriter bw = new BufferedWriter(new FileWriter("MemoManagerMYK.txt"));
-		BufferedReader br = new BufferedReader(new FileReader("MemoManagerMYK.txt"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter("testMemoUpdate.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("testMemoUpdate.txt"));
 			
 		bw.write("이 테스트는");
 		bw.newLine();
@@ -30,7 +30,7 @@ public class Test_1515655 {		/* 1515655 임소희 (main & organization 담당)
 		br.close();
 		
 		
-		BufferedReader br1 = new BufferedReader(new FileReader("MemoManagerMYK.txt"));
+		BufferedReader br1 = new BufferedReader(new FileReader("testMemoUpdate.txt"));
 		String tobeupdated = "updated!!!";
 		String before = MemoManager.readAllMemo(br1, 4, tobeupdated); // 수정 내용 및 전체 memoList를 String에 담기	
 		br1.close();
@@ -41,7 +41,7 @@ public class Test_1515655 {		/* 1515655 임소희 (main & organization 담당)
 		MemoManager.UpdateStringMemo(fw, before);//수정
 		fw.close();
 		
-		BufferedReader br2 = new BufferedReader(new FileReader("MemoManagerMYK.txt"));
+		BufferedReader br2 = new BufferedReader(new FileReader("testMemoUpdate.txt"));
 		assertEquals(MemoManager.selectMemoLineTobeUpdated(br2, 4), tobeupdated); //수정되었는지 확인		
 	}
 }
