@@ -37,7 +37,7 @@ public class Test_1515655 {		/* 1515655 임소희 (main & organization 담당)
 		
 		System.out.println(before); // 콘솔창에서 최종수정내용 제대로 담았는지 확인
 		
-	    FileWriter fw = new FileWriter("MemoManagerMYK.txt");
+	    FileWriter fw = new FileWriter("testMemoUpdate.txt");
 		MemoManager.UpdateStringMemo(fw, before);//수정
 		fw.close();
 		
