@@ -126,7 +126,7 @@ class MemoManager {//메모 관리 메뉴
             }
             
             String updateData = br1.readLine();
-            System.out.println("수정를 원하는 메모: "+updateData);
+            System.out.println("수정을 원하는 메모: "+updateData);
             System.out.println("원하는 내용으로 메모를 수정하세요.");
             System.out.print("입력: ");
             Scanner sc2_1 = new Scanner(System.in);
@@ -151,6 +151,38 @@ class MemoManager {//메모 관리 메뉴
     	  e.printStackTrace();
       }            
    }
+   public static String selectMemoLineTobeUpdated(BufferedReader br, int selectedLine) throws IOException {
+  	   for (int i = 0; i<selectedLine-1; i++) {
+  		   br.readLine();
+  	   }
+  	   String selData = br.readLine();
+  	   return selData;
+     }
+   public static String readAllMemo(BufferedReader br, int number, String updateMemo) throws IOException {
+  	   String dummies="";
+  	   String line;
+  	   for (int i = 0; i<number-1; i++) {
+  		   line = br.readLine();
+  		   dummies +=(line+"\r\n");
+  	   }
+  	   br.readLine();
+  	   dummies += updateMemo+"\r\n";   
+     
+  	   while((line = br.readLine())!=null) {
+  		   dummies +=(line + "\r\n");
+  	   }
+  	   return dummies;
+     }
+   static FileWriter UpdateStringMemo(FileWriter fw, String memo) {
+	      try {
+	    	  fw.write(memo);
+	    	  fw.close();
+	      }
+	      catch (Exception e) {
+	    	  e.printStackTrace();
+	      }
+	      return fw ;   
+	   }
    
    public static void deletememo(BufferedReader br) throws Exception {   // 메모 삭제
       int number;
